@@ -10,6 +10,8 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
 
+import java.util.List;
+
 /**
  * This is a simple teleop routine for debugging your motor configuration.
  * Pressing each of the buttons will power its respective motor.
@@ -38,7 +40,7 @@ import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
  *
  * Uncomment the @Disabled tag below to use this opmode.
  */
-@Disabled
+
 @Config
 @TeleOp(group = "drive")
 public class MotorDirectionDebugger extends LinearOpMode {
@@ -86,6 +88,12 @@ public class MotorDirectionDebugger extends LinearOpMode {
                 drive.setMotorPowers(0, 0, 0, 0);
                 telemetry.addLine("Running Motor: None");
             }
+            List<Double> wheelPositions = drive.getWheelPositions();
+
+            telemetry.addData("left Front", wheelPositions.get(0));
+            telemetry.addData("left Rear", wheelPositions.get(1));
+            telemetry.addData("right Rear", wheelPositions.get(2));
+            telemetry.addData("right Front", wheelPositions.get(3));
 
             telemetry.update();
         }
